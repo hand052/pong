@@ -27,14 +27,14 @@ public class gameManager : MonoBehaviour
     public void player1Scored()
     {
         Player1Score++;
-        player1Text.GetComponent<TextMeshProUGUI>().text = Player1Score.ToString();
+        player1Text.GetComponent<Text>().text = Player1Score.ToString();
         RestPosition();
     }
 
     public void player2Scored()
     {
         Player2Score++;
-        player2Text.GetComponent<TextMeshProUGUI>().text = Player2Score.ToString();
+        player2Text.GetComponent<Text>().text = Player2Score.ToString();
         RestPosition();
     }
 
@@ -43,5 +43,14 @@ public class gameManager : MonoBehaviour
         ball.GetComponent<ball>().Reset();
         player1Paddle.GetComponent<paddle>().Reset();
         player2Paddle.GetComponent<paddle>().Reset();
+    }
+
+    //to quit game
+    private void Update()
+    {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 }

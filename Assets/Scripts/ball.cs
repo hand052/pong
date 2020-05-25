@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ball : MonoBehaviour
@@ -10,13 +11,27 @@ public class ball : MonoBehaviour
     public Rigidbody2D rb;
     public AudioSource sound;
     public Vector2 startPosition;
+    public GameObject startText, p1Movement, p2Movement;
+    public bool started = false;
 
     // Start is called before the first frame update
     void Start()
     {
         //takes note of where the ball first was
         startPosition = transform.position;
-        Launch();
+    }
+
+    private void Update()
+    {
+        //to start the game
+        if(started == false && Input.GetKeyDown(KeyCode.Space))
+        {
+            started = true;
+            startText.SetActive(false);
+            p1Movement.SetActive(false);
+            p2Movement.SetActive(false);
+            Launch();
+        }
     }
 
     public void Reset()
