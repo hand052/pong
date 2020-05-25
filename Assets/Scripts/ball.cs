@@ -2,22 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ball : MonoBehaviour
 {
 
     public float speed;
     public Rigidbody2D rb;
+    public AudioSource sound;
+    public Vector2 startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //takes note of where the ball first was
+        startPosition = transform.position;
+        Launch();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reset()
     {
-        
+        rb.velocity = Vector2.zero;
+        //returns the ball to where it started
+        transform.position = startPosition;
+        Launch();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject)
+        {
+            sound.Play();
+        }
     }
 
     //sends the ball in a random direction

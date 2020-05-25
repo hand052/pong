@@ -8,13 +8,15 @@ public class paddle : MonoBehaviour
     public bool isPlayer1;
     public float speed;
     public Rigidbody2D rb;
+    public Vector2 startPosition;
 
     private float movement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //takes note on players starting pos and archives it
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -31,5 +33,12 @@ public class paddle : MonoBehaviour
         }
 
         rb.velocity = new Vector2(0, movement * speed);
+    }
+
+    public void Reset()
+    {
+        rb.velocity = Vector2.zero;
+        //returns the players to their starting positions
+        transform.position = startPosition;
     }
 }
